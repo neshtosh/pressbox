@@ -1,0 +1,248 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Play, Filter, Clock, Eye, X } from 'lucide-react';
+
+const VideoLibrary: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [isVisible, setIsVisible] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const filters = ['All', 'Highlights', 'Interviews', 'Analysis', 'Live'];
+
+  const videos = [
+    {
+      id: 1,
+      title: "Game-Winning Touchdown: Chiefs vs Bills",
+      thumbnail: "https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "3:45",
+      views: "1.2M",
+      category: "Highlights",
+      sport: "Football"
+    },
+    {
+      id: 2,
+      title: "LeBron James: Career Retrospective",
+      thumbnail: "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "12:30",
+      views: "850K",
+      category: "Analysis",
+      sport: "Basketball"
+    },
+    {
+      id: 3,
+      title: "Post-Game Interview: Messi on Victory",
+      thumbnail: "https://images.pexels.com/photos/1171084/pexels-photo-1171084.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "5:20",
+      views: "650K",
+      category: "Interviews",
+      sport: "Soccer"
+    },
+    {
+      id: 4,
+      title: "Worlds 2024: Best Plays Montage",
+      thumbnail: "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "8:15",
+      views: "2.1M",
+      category: "Highlights",
+      sport: "eSports"
+    },
+    {
+      id: 5,
+      title: "Breaking Down the Perfect Swing",
+      thumbnail: "https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "6:45",
+      views: "420K",
+      category: "Analysis",
+      sport: "Baseball"
+    },
+    {
+      id: 6,
+      title: "Stanley Cup Finals: Epic Saves",
+      thumbnail: "https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1",
+      duration: "4:30",
+      views: "890K",
+      category: "Highlights",
+      sport: "Hockey"
+    }
+  ];
+
+  const filteredVideos = activeFilter === 'All' 
+    ? videos 
+    : videos.filter(video => video.category === activeFilter);
+
+  const handleFilterClick = (filter: string) => {
+    if (filter === 'Live') {
+      setShowComingSoon(true);
+      // Auto-hide after 3 seconds
+      setTimeout(() => setShowComingSoon(false), 3000);
+    } else {
+      setActiveFilter(filter);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section 
+      ref={sectionRef}
+      className={`py-20 bg-black transition-opacity duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">
+            VIDEO <span className="text-cyan-400">LIBRARY</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Watch exclusive highlights, interviews, and in-depth analysis from the world of sports
+          </p>
+        </div>
+
+        {/* Filter Bar */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => handleFilterClick(filter)}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${
+                activeFilter === filter
+                  ? 'bg-cyan-400 text-black'
+                  : 'bg-gray-800 text-white hover:bg-gray-700'
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
+        {/* Video Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredVideos.map((video) => (
+            <div
+              key={video.id}
+              className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-cyan-400/50 transition-all duration-300"
+            >
+              {/* Thumbnail */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+                
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 group-hover:bg-cyan-400/30 transition-all duration-300 group-hover:scale-105">
+                    <Play className="w-6 h-6 text-cyan-400 ml-1" />
+                  </div>
+                </div>
+
+                {/* Duration Badge */}
+                <div className="absolute bottom-3 right-3 bg-black/80 text-white px-2 py-1 rounded text-sm flex items-center space-x-1">
+                  <Clock className="w-3 h-3" />
+                  <span>{video.duration}</span>
+                </div>
+
+                {/* Category Badge */}
+                <div className="absolute top-3 left-3 bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded text-sm border border-cyan-400/30">
+                  {video.category}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
+                  {video.title}
+                </h3>
+                
+                <div className="flex items-center justify-between text-gray-400 text-sm">
+                  <span className="font-semibold">{video.sport}</span>
+                  <div className="flex items-center space-x-1">
+                    <Eye className="w-4 h-4" />
+                    <span>{video.views}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover Effect */}
+              <div className="absolute inset-0 border-2 border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+            </div>
+          ))}
+        </div>
+
+        {/* Load More Button */}
+        <div className="text-center mt-12">
+          <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 hover:scale-105">
+            Load More Videos
+          </button>
+        </div>
+      </div>
+
+      {/* Coming Soon Modal */}
+      {showComingSoon && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="relative bg-gray-900 border border-cyan-400/30 rounded-2xl p-8 max-w-md mx-4 transform animate-fade-in">
+            {/* Close Button */}
+            <button 
+              onClick={() => setShowComingSoon(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Content */}
+            <div className="text-center">
+              {/* Animated Icon */}
+              <div className="w-20 h-20 mx-auto mb-6 relative">
+                <div className="absolute inset-0 bg-cyan-400/20 rounded-full animate-pulse"></div>
+                <div className="absolute inset-2 bg-cyan-400/40 rounded-full animate-ping"></div>
+                <div className="absolute inset-4 bg-cyan-400 rounded-full flex items-center justify-center">
+                  <Play className="w-8 h-8 text-black" />
+                </div>
+              </div>
+
+              {/* Text */}
+              <h3 className="text-2xl font-orbitron font-bold text-white mb-4">
+                COMING <span className="text-cyan-400">SOON</span>
+              </h3>
+              
+              <p className="text-gray-400 mb-6">
+                Live streaming feature is under development. Get ready for real-time sports action!
+              </p>
+
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-800 rounded-full h-2 mb-6">
+                <div className="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full animate-pulse" style={{ width: '65%' }}></div>
+              </div>
+
+              {/* Status */}
+              <div className="flex items-center justify-center space-x-2 text-cyan-400 text-sm">
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span className="font-semibold">DEVELOPMENT IN PROGRESS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default VideoLibrary;
