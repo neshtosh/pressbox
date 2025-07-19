@@ -157,27 +157,27 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
     type?: 'default' | 'sport' | 'chart';
   }) => (
     <div className="relative">
-      <label className="block text-gray-300 text-sm mb-3 font-medium tracking-wide">
+      <label className="block text-gray-300 text-xs md:text-sm mb-2 md:mb-3 font-medium tracking-wide">
         {label}
       </label>
       <button
         onClick={() => setIsOpen(isOpen ? null : label)}
-        className={`w-full px-4 py-4 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:border-cyan-400 focus:outline-none transition-all duration-300 flex items-center justify-between group hover:border-cyan-400/50 ${
+        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-gray-900/50 border border-gray-700 rounded-lg md:rounded-xl text-white focus:border-cyan-400 focus:outline-none transition-all duration-300 flex items-center justify-between group hover:border-cyan-400/50 text-sm md:text-base ${
           isOpen ? 'border-cyan-400' : ''
         }`}
       >
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 md:space-x-3">
           {type === 'sport' && (
-            <span className="text-2xl">{sports[value as keyof typeof sports].icon}</span>
+            <span className="text-lg md:text-2xl">{sports[value as keyof typeof sports].icon}</span>
           )}
           {type === 'chart' && (
             <span className="text-cyan-400">
               {chartTypes.find(ct => ct.value === value)?.icon && 
-                React.createElement(chartTypes.find(ct => ct.value === value)!.icon, { size: 20 })
+                React.createElement(chartTypes.find(ct => ct.value === value)!.icon, { size: 16 })
               }
             </span>
           )}
-          <span className="font-medium">
+          <span className="font-medium truncate">
             {type === 'sport' 
               ? sports[value as keyof typeof sports].name
               : type === 'chart'
@@ -186,13 +186,13 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
             }
           </span>
         </div>
-        <svg className="w-5 h-5 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-400 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-xl shadow-2xl z-50 overflow-hidden">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-lg md:rounded-xl shadow-2xl z-50 overflow-hidden">
           <div className="p-2">
             {options.map((option) => (
               <button
@@ -201,21 +201,21 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
                   onChange(option.value || option);
                   setIsOpen(false);
                 }}
-                className={`w-full px-4 py-3 text-left rounded-lg transition-all duration-300 flex items-center space-x-3 ${
+                className={`w-full px-3 md:px-4 py-2 md:py-3 text-left rounded-lg transition-all duration-300 flex items-center space-x-2 md:space-x-3 text-sm md:text-base ${
                   value === (option.value || option)
                     ? 'bg-cyan-400/20 text-cyan-400 border border-cyan-400/30'
                     : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 {type === 'sport' && (
-                  <span className="text-xl">{sports[option.value as keyof typeof sports].icon}</span>
+                  <span className="text-lg md:text-xl">{sports[option.value as keyof typeof sports].icon}</span>
                 )}
                 {type === 'chart' && (
                   <span className="text-cyan-400">
-                    {React.createElement(option.icon, { size: 18 })}
+                    {React.createElement(option.icon, { size: 16 })}
                   </span>
                 )}
-                <span>{option.label || option}</span>
+                <span className="truncate">{option.label || option}</span>
               </button>
             ))}
           </div>
@@ -239,7 +239,7 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
   };
 
   return (
-    <section className="py-20 bg-black relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-black relative overflow-hidden">
       {/* Futuristic Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-1 h-32 bg-gradient-to-b from-cyan-400/20 to-transparent"></div>
@@ -266,27 +266,27 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-4 mb-6">
+        <div className="text-center mb-8 md:mb-16">
+          <div className="inline-flex items-center space-x-2 md:space-x-4 mb-4 md:mb-6">
             <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
             <div className="w-1 h-1 bg-cyan-400/60 rounded-full"></div>
             <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-orbitron font-bold text-white mb-4 md:mb-6 tracking-tight leading-tight">
             LIVE SCORES
           </h2>
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mb-6"></div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mb-4 md:mb-6"></div>
+          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
             Real-time statistics and live commentary for all major sports
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Live Scores Table */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Filters */}
-            <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-6 backdrop-blur-sm">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gray-900/30 border border-gray-800/50 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                 {/* Sport Selection */}
                 <CustomDropdown
                   label="SPORT"
@@ -326,44 +326,44 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
 
             {/* Live Table */}
             {currentData && (
-              <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-6 backdrop-blur-sm">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-1 h-8 bg-cyan-400 rounded-full"></div>
-                  <h3 className="text-2xl font-orbitron font-bold text-white">
+              <div className="bg-gray-900/30 border border-gray-800/50 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
+                <div className="flex items-center space-x-3 md:space-x-4 mb-4 md:mb-6">
+                  <div className="w-1 h-6 md:h-8 bg-cyan-400 rounded-full"></div>
+                  <h3 className="text-base md:text-xl font-orbitron font-bold text-white leading-tight">
                     {sports[selectedSport as keyof typeof sports].leagues[selectedLeague as keyof typeof sports[typeof selectedSport]['leagues']]} LIVE STANDINGS
                   </h3>
                 </div>
                 
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-xs md:text-sm">
                     <thead>
                       <tr className="border-b border-gray-700/50">
-                        <th className="text-left py-4 px-6 text-cyan-400 font-semibold tracking-wide">POS</th>
-                        <th className="text-left py-4 px-6 text-cyan-400 font-semibold tracking-wide">TEAM</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">P</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">W</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">D</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">L</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">GF</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">GA</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">PTS</th>
-                        <th className="text-center py-4 px-6 text-cyan-400 font-semibold tracking-wide">STATUS</th>
+                        <th className="text-left py-3 md:py-4 px-3 md:px-6 text-cyan-400 font-semibold tracking-wide">POS</th>
+                        <th className="text-left py-3 md:py-4 px-3 md:px-6 text-cyan-400 font-semibold tracking-wide">TEAM</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">P</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">W</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">D</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">L</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">GF</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">GA</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">PTS</th>
+                        <th className="text-center py-3 md:py-4 px-2 md:px-6 text-cyan-400 font-semibold tracking-wide">STATUS</th>
                       </tr>
                     </thead>
                     <tbody>
                       {currentData.table.map((row, index) => (
                         <tr key={index} className="border-b border-gray-800/30 hover:bg-gray-800/20 transition-all duration-300">
-                          <td className="py-4 px-6 font-bold text-cyan-400">{row.position}</td>
-                          <td className="py-4 px-6 font-semibold">{row.team}</td>
-                          <td className="py-4 px-6 text-center">{row.played || row.wins}</td>
-                          <td className="py-4 px-6 text-center">{row.won || row.wins}</td>
-                          <td className="py-4 px-6 text-center">{row.drawn || 0}</td>
-                          <td className="py-4 px-6 text-center">{row.lost || row.losses}</td>
-                          <td className="py-4 px-6 text-center">{row.goalsFor || row.pointsFor}</td>
-                          <td className="py-4 px-6 text-center">{row.goalsAgainst || row.pointsAgainst}</td>
-                          <td className="py-4 px-6 text-center font-bold text-cyan-400">{row.points || row.winPercentage}</td>
-                          <td className="py-4 px-6 text-center">
-                            <span className="px-2 py-1 bg-red-500/20 text-red-400 rounded-full text-xs border border-red-400/30 animate-pulse">
+                          <td className="py-3 md:py-4 px-3 md:px-6 font-bold text-cyan-400">{row.position}</td>
+                          <td className="py-3 md:py-4 px-3 md:px-6 font-semibold truncate max-w-20 md:max-w-none">{row.team}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.played || row.wins}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.won || row.wins}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.drawn || 0}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.lost || row.losses}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.goalsFor || row.pointsFor}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">{row.goalsAgainst || row.pointsAgainst}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center font-bold text-cyan-400">{row.points || row.winPercentage}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-6 text-center">
+                            <span className="px-1 md:px-2 py-1 bg-red-500/20 text-red-400 rounded-full text-xs border border-red-400/30 animate-pulse">
                               {row.status}
                             </span>
                           </td>
@@ -377,44 +377,44 @@ const LiveScores: React.FC<LiveScoresProps> = ({ isScrolled }) => {
           </div>
 
           {/* Live Chat */}
-          <div className="bg-gray-900/30 border border-gray-800/50 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-1 h-8 bg-cyan-400 rounded-full"></div>
-              <h3 className="text-2xl font-orbitron font-bold text-white">LIVE CHAT</h3>
+          <div className="bg-gray-900/30 border border-gray-800/50 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
+            <div className="flex items-center space-x-3 md:space-x-4 mb-4 md:mb-6">
+              <div className="w-1 h-6 md:h-8 bg-cyan-400 rounded-full"></div>
+              <h3 className="text-lg md:text-2xl font-orbitron font-bold text-white">LIVE CHAT</h3>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                <span className="text-red-400 text-sm font-medium">LIVE</span>
+                <span className="text-red-400 text-xs md:text-sm font-medium">LIVE</span>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="h-96 overflow-y-auto mb-4 space-y-4">
+            <div className="h-64 md:h-96 overflow-y-auto mb-4 space-y-3 md:space-y-4">
               {messages.map((message) => (
-                <div key={message.id} className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-4">
+                <div key={message.id} className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-3 md:p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-cyan-400 font-semibold text-sm">{message.user}</span>
+                    <span className="text-cyan-400 font-semibold text-xs md:text-sm">{message.user}</span>
                     <span className="text-gray-400 text-xs">{message.time}</span>
                   </div>
-                  <p className="text-gray-300 text-sm">{message.message}</p>
+                  <p className="text-gray-300 text-xs md:text-sm break-words">{message.message}</p>
                 </div>
               ))}
             </div>
 
             {/* Message Input */}
-            <form onSubmit={handleSendMessage} className="flex space-x-3">
+            <form onSubmit={handleSendMessage} className="flex space-x-2 md:space-x-3">
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                className="flex-1 px-3 md:px-4 py-2 md:py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors duration-300 flex items-center space-x-2"
+                className="px-4 md:px-6 py-2 md:py-3 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition-colors duration-300 flex items-center space-x-2 text-sm md:text-base"
               >
-                <Send className="w-4 h-4" />
-                <span>Send</span>
+                <Send className="w-3 h-3 md:w-4 md:h-4" />
+                <span className="hidden sm:inline">Send</span>
               </button>
             </form>
           </div>

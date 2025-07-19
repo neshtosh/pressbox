@@ -15,6 +15,7 @@ body {
   background-color: #000;
   color: #fff;
   overflow-x: hidden;
+  font-size: 0.95rem; /* Slightly smaller base font size */
 }
 
 /* Custom Font Classes */
@@ -24,6 +25,43 @@ body {
 
 .font-exo {
   font-family: 'Exo 2', sans-serif;
+}
+
+/* Reduced Font Size Utilities */
+.text-xs-sm {
+  font-size: 0.75rem; /* 12px instead of 12px */
+}
+
+.text-sm-sm {
+  font-size: 0.8rem; /* 13px instead of 14px */
+}
+
+.text-base-sm {
+  font-size: 0.9rem; /* 14px instead of 16px */
+}
+
+.text-lg-sm {
+  font-size: 1rem; /* 16px instead of 18px */
+}
+
+.text-xl-sm {
+  font-size: 1.1rem; /* 18px instead of 20px */
+}
+
+.text-2xl-sm {
+  font-size: 1.3rem; /* 21px instead of 24px */
+}
+
+.text-3xl-sm {
+  font-size: 1.6rem; /* 26px instead of 30px */
+}
+
+.text-4xl-sm {
+  font-size: 2rem; /* 32px instead of 36px */
+}
+
+.text-5xl-sm {
+  font-size: 2.5rem; /* 40px instead of 48px */
 }
 
 /* Custom Animations */
@@ -60,6 +98,68 @@ body {
   }
 }
 
+/* Glitch Animations */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-text {
+  0% {
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                 0.025em 0.04em 0 #fffc00;
+  }
+  15% {
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                 0.025em 0.04em 0 #fffc00;
+  }
+  16% {
+    text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                 -0.05em -0.05em 0 #fffc00;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                 -0.05em -0.05em 0 #fffc00;
+  }
+  50% {
+    text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                 0 -0.04em 0 #fffc00;
+  }
+  99% {
+    text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                 0 -0.04em 0 #fffc00;
+  }
+  100% {
+    text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                 -0.04em -0.025em 0 #fffc00;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.8s ease-out;
 }
@@ -70,6 +170,18 @@ body {
 
 .animate-fade-in-delay-2 {
   animation: fade-in-delay-2 0.8s ease-out 0.4s both;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s infinite;
+}
+
+.animate-glitch-text {
+  animation: glitch-text 0.3s infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 2s linear infinite;
 }
 
 /* Glow Effects */

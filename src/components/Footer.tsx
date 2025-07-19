@@ -26,11 +26,11 @@ const Footer: React.FC = () => {
               <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center">
                 <span className="text-black font-orbitron font-bold text-lg">PB</span>
               </div>
-              <span className="text-2xl font-orbitron font-bold text-white">
+              <span className="text-xl md:text-2xl font-orbitron font-bold text-white">
                 PRESS<span className="text-cyan-400">BOX</span>
               </span>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-gray-400 mb-6 max-w-md text-sm md:text-base">
               Your ultimate destination for sports news, analysis, and exclusive content. 
               By athletes, for athletes.
             </p>
@@ -51,13 +51,13 @@ const Footer: React.FC = () => {
           {/* Footer Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-white font-orbitron font-bold text-lg mb-4">{category}</h3>
+              <h3 className="text-white font-orbitron font-bold text-base md:text-lg mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link, index) => (
                   <li key={index}>
                     <a
                       href="#"
-                      className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                      className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 text-sm md:text-base"
                     >
                       {link}
                     </a>
@@ -72,10 +72,10 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div>
-              <h3 className="text-white font-orbitron font-bold text-lg mb-2">
+              <h3 className="text-white font-orbitron font-bold text-base md:text-lg mb-2">
                 Stay In The Game
               </h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm md:text-base">
                 Get the latest sports news and exclusive content delivered to your inbox
               </p>
             </div>
@@ -83,9 +83,9 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-80 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                className="flex-1 md:w-80 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300">
+              <button className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 text-sm md:text-base">
                 Subscribe
               </button>
             </div>
@@ -94,17 +94,17 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <div className="text-gray-400 text-sm">
+          <div className="text-gray-400 text-xs md:text-sm">
             © 2024 PressBox. All rights reserved.
           </div>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-300">
+            <a href="#" className="text-gray-400 hover:text-cyan-400 text-xs md:text-sm transition-colors duration-300">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-300">
+            <a href="#" className="text-gray-400 hover:text-cyan-400 text-xs md:text-sm transition-colors duration-300">
               Terms of Service
             </a>
-            <a href="#" className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-300">
+            <a href="#" className="text-gray-400 hover:text-cyan-400 text-xs md:text-sm transition-colors duration-300">
               Cookie Policy
             </a>
           </div>

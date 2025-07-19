@@ -27,7 +27,8 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="text-2xl md:text-3xl font-orbitron font-bold text-white">
+          <Link to="/" className="flex items-center space-x-2">
+            
             
           </Link>
 
@@ -82,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
           {/* Custom Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden relative w-8 h-8 flex flex-col justify-center items-center group"
+            className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center group"
           >
             {/* Animated Dots */}
             <div className="flex flex-col space-y-1">
@@ -106,29 +107,29 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800">
-            <nav className="py-4 space-y-2">
+          <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-gray-800 mt-4 rounded-b-2xl">
+            <nav className="py-6 space-y-4">
               <Link
                 to="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-white hover:text-cyan-400 transition-colors ${
-                  location.pathname === '/' ? 'text-cyan-400' : ''
+                className={`block px-6 py-4 text-white hover:text-cyan-400 transition-colors rounded-lg mx-4 ${
+                  location.pathname === '/' ? 'text-cyan-400 bg-cyan-400/10' : 'hover:bg-gray-800/50'
                 }`}
               >
                 Home
               </Link>
               
-              <div className="px-4 py-3">
-                <div className="text-white mb-2">Blogs</div>
-                <div className="space-y-2 ml-4">
+              <div className="px-6 py-4">
+                <div className="text-white mb-4 font-semibold text-lg">Blogs</div>
+                <div className="space-y-3 ml-4">
                   {sportsCategories.map((sport) => (
                     <Link
                       key={sport.name}
                       to={`/blog/${sport.name.toLowerCase()}`}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block py-2 text-gray-300 hover:text-cyan-400 transition-colors flex items-center space-x-2"
+                      className="block py-3 px-4 text-gray-300 hover:text-cyan-400 transition-colors flex items-center space-x-3 rounded-lg hover:bg-gray-800/50"
                     >
-                      <span>{sport.icon}</span>
+                      <span className="text-xl">{sport.icon}</span>
                       <span>{sport.name}</span>
                     </Link>
                   ))}
@@ -138,8 +139,8 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
               <Link
                 to="/analytics"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-white hover:text-cyan-400 transition-colors ${
-                  location.pathname === '/analytics' ? 'text-cyan-400' : ''
+                className={`block px-6 py-4 text-white hover:text-cyan-400 transition-colors rounded-lg mx-4 ${
+                  location.pathname === '/analytics' ? 'text-cyan-400 bg-cyan-400/10' : 'hover:bg-gray-800/50'
                 }`}
               >
                 Analytics

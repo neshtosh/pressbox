@@ -100,27 +100,27 @@ const VideoLibrary: React.FC = () => {
   return (
     <section 
       ref={sectionRef}
-      className={`py-20 bg-black transition-opacity duration-300 ${
+      className={`py-12 md:py-20 bg-black transition-opacity duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-orbitron font-bold text-white mb-4 leading-tight">
             VIDEO <span className="text-cyan-400">LIBRARY</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto px-4">
             Watch exclusive highlights, interviews, and in-depth analysis from the world of sports
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 px-4">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterClick(filter)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 ${
                 activeFilter === filter
                   ? 'bg-cyan-400 text-black'
                   : 'bg-gray-800 text-white hover:bg-gray-700'
@@ -132,14 +132,14 @@ const VideoLibrary: React.FC = () => {
         </div>
 
         {/* Video Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {filteredVideos.map((video) => (
             <div
               key={video.id}
-              className="group relative overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 hover:border-cyan-400/50 transition-all duration-300"
+              className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gray-900 border border-gray-800 hover:border-cyan-400/50 transition-all duration-300"
             >
               {/* Thumbnail */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
@@ -149,47 +149,47 @@ const VideoLibrary: React.FC = () => {
                 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 group-hover:bg-cyan-400/30 transition-all duration-300 group-hover:scale-105">
-                    <Play className="w-6 h-6 text-cyan-400 ml-1" />
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-cyan-400/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 group-hover:bg-cyan-400/30 transition-all duration-300 group-hover:scale-105">
+                    <Play className="w-4 h-4 md:w-6 md:h-6 text-cyan-400 ml-0.5 md:ml-1" />
                   </div>
                 </div>
 
                 {/* Duration Badge */}
-                <div className="absolute bottom-3 right-3 bg-black/80 text-white px-2 py-1 rounded text-sm flex items-center space-x-1">
+                <div className="absolute bottom-2 md:bottom-3 right-2 md:right-3 bg-black/80 text-white px-2 py-1 rounded text-xs md:text-sm flex items-center space-x-1">
                   <Clock className="w-3 h-3" />
                   <span>{video.duration}</span>
                 </div>
 
                 {/* Category Badge */}
-                <div className="absolute top-3 left-3 bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded text-sm border border-cyan-400/30">
+                <div className="absolute top-2 md:top-3 left-2 md:left-3 bg-cyan-400/20 text-cyan-400 px-2 py-1 rounded text-xs md:text-sm border border-cyan-400/30">
                   {video.category}
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
+              <div className="p-4 md:p-6">
+                <h3 className="text-sm md:text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
                   {video.title}
                 </h3>
                 
-                <div className="flex items-center justify-between text-gray-400 text-sm">
+                <div className="flex items-center justify-between text-gray-400 text-xs">
                   <span className="font-semibold">{video.sport}</span>
                   <div className="flex items-center space-x-1">
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-3 h-3 md:w-4 md:h-4" />
                     <span>{video.views}</span>
                   </div>
                 </div>
               </div>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 border-2 border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              <div className="absolute inset-0 border-2 border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl md:rounded-2xl"></div>
             </div>
           ))}
         </div>
 
         {/* Load More Button */}
-        <div className="text-center mt-12">
-          <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 hover:scale-105">
+        <div className="text-center mt-8 md:mt-12">
+          <button className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 hover:scale-105 text-sm md:text-base">
             Load More Videos
           </button>
         </div>
@@ -197,8 +197,8 @@ const VideoLibrary: React.FC = () => {
 
       {/* Coming Soon Modal */}
       {showComingSoon && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="relative bg-gray-900 border border-cyan-400/30 rounded-2xl p-8 max-w-md mx-4 transform animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="relative bg-gray-900 border border-cyan-400/30 rounded-xl md:rounded-2xl p-6 md:p-8 max-w-md mx-4 transform animate-fade-in">
             {/* Close Button */}
             <button 
               onClick={() => setShowComingSoon(false)}
@@ -210,20 +210,20 @@ const VideoLibrary: React.FC = () => {
             {/* Content */}
             <div className="text-center">
               {/* Animated Icon */}
-              <div className="w-20 h-20 mx-auto mb-6 relative">
+              <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 relative">
                 <div className="absolute inset-0 bg-cyan-400/20 rounded-full animate-pulse"></div>
                 <div className="absolute inset-2 bg-cyan-400/40 rounded-full animate-ping"></div>
                 <div className="absolute inset-4 bg-cyan-400 rounded-full flex items-center justify-center">
-                  <Play className="w-8 h-8 text-black" />
+                  <Play className="w-6 h-6 md:w-8 md:h-8 text-black" />
                 </div>
               </div>
 
               {/* Text */}
-              <h3 className="text-2xl font-orbitron font-bold text-white mb-4">
+              <h3 className="text-xl md:text-2xl font-orbitron font-bold text-white mb-4">
                 COMING <span className="text-cyan-400">SOON</span>
               </h3>
               
-              <p className="text-gray-400 mb-6">
+              <p className="text-gray-400 mb-6 text-sm md:text-base">
                 Live streaming feature is under development. Get ready for real-time sports action!
               </p>
 
@@ -233,7 +233,7 @@ const VideoLibrary: React.FC = () => {
               </div>
 
               {/* Status */}
-              <div className="flex items-center justify-center space-x-2 text-cyan-400 text-sm">
+              <div className="flex items-center justify-center space-x-2 text-cyan-400 text-xs md:text-sm">
                 <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                 <span className="font-semibold">DEVELOPMENT IN PROGRESS</span>
               </div>

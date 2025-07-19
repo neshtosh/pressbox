@@ -12,9 +12,12 @@ import Footer from './components/Footer';
 import BlogPost from './components/BlogPost';
 import IndividualBlogPost from './components/IndividualBlogPost';
 import SportsAnalytics from './components/SportsAnalytics';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasShownLoading, setHasShownLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +28,26 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Temporarily force loading screen to show every time for testing
+  useEffect(() => {
+    // Clear localStorage to force loading screen
+    localStorage.removeItem('hasVisitedPressBox');
+    setIsLoading(true);
+    setHasShownLoading(false);
+  }, []);
+
+  const handleLoadingComplete = () => {
+    console.log('Loading complete called');
+    setIsLoading(false);
+    setHasShownLoading(true);
+    localStorage.setItem('hasVisitedPressBox', 'true');
+  };
+
   const HomePage = () => (
     <>
       <Hero />
       <FeaturedCarousel />
+      <SportsHub />
       <VideoLibrary />
       <LiveScores />
       <ManifestoSection />
@@ -39,6 +58,11 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-black text-white font-exo">
+        {/* Loading Screen - Show on first visit */}
+        {isLoading && (
+          <LoadingScreen onComplete={handleLoadingComplete} />
+        )}
+        
         <Header isScrolled={isScrolled} />
         
         <Routes>

@@ -31,10 +31,10 @@ const ContactSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-orbitron font-bold text-white mb-4">
               JOIN THE <span className="text-cyan-400">PRESSBOX</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
               Get the pulse of every sport. Connect with fellow athletes and fans.
             </p>
           </div>
@@ -42,7 +42,7 @@ const ContactSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 backdrop-blur-sm">
-              <h3 className="text-2xl font-orbitron font-bold text-white mb-6 flex items-center space-x-2">
+              <h3 className="text-xl md:text-2xl font-orbitron font-bold text-white mb-6 flex items-center space-x-2">
                 <MessageCircle className="w-6 h-6 text-cyan-400" />
                 <span>Get In Touch</span>
               </h3>
@@ -55,7 +55,7 @@ const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your Name"
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
                     required
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -68,7 +68,7 @@ const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Your Email"
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
                     required
                   />
                 </div>
@@ -78,7 +78,7 @@ const ContactSection: React.FC = () => {
                     name="sport"
                     value={formData.sport}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
                     required
                   >
                     <option value="">Select Your Sport</option>
@@ -95,14 +95,14 @@ const ContactSection: React.FC = () => {
                     onChange={handleChange}
                     placeholder="Your Message"
                     rows={4}
-                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none text-sm md:text-base"
                     required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 flex items-center justify-center space-x-2 text-sm md:text-base"
                 >
                   <Send className="w-5 h-5" />
                   <span>Send Message</span>
@@ -114,20 +114,20 @@ const ContactSection: React.FC = () => {
             <div className="space-y-8">
               {/* Newsletter */}
               <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 backdrop-blur-sm">
-                <h3 className="text-2xl font-orbitron font-bold text-white mb-4 flex items-center space-x-2">
+                <h3 className="text-xl md:text-2xl font-orbitron font-bold text-white mb-4 flex items-center space-x-2">
                   <Mail className="w-6 h-6 text-cyan-400" />
                   <span>Newsletter</span>
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-gray-400 mb-6 text-sm md:text-base">
                   Stay updated with the latest sports news, exclusive interviews, and breaking stories.
                 </p>
                 <div className="flex space-x-2">
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+                    className="flex-1 px-4 py-3 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 text-sm md:text-base"
                   />
-                  <button className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300">
+                  <button className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 text-sm md:text-base">
                     Subscribe
                   </button>
                 </div>
@@ -135,7 +135,7 @@ const ContactSection: React.FC = () => {
 
               {/* Social Media */}
               <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 backdrop-blur-sm">
-                <h3 className="text-2xl font-orbitron font-bold text-white mb-4">
+                <h3 className="text-xl md:text-2xl font-orbitron font-bold text-white mb-4">
                   Follow Us
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -149,8 +149,8 @@ const ContactSection: React.FC = () => {
                       key={social.name}
                       className={`p-4 bg-gradient-to-r ${social.color} rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300`}
                     >
-                      <div className="text-white font-bold text-lg">{social.count}</div>
-                      <div className="text-white/80 text-sm">{social.name}</div>
+                      <div className="text-white font-bold text-base md:text-lg">{social.count}</div>
+                      <div className="text-white/80 text-xs md:text-sm">{social.name}</div>
                     </div>
                   ))}
                 </div>
@@ -163,11 +163,11 @@ const ContactSection: React.FC = () => {
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-300 italic mb-4">
+                <p className="text-gray-300 italic mb-4 text-sm md:text-base">
                   "PressBox gives me the insider perspective I can't get anywhere else. 
                   Real athletes telling real stories."
                 </p>
-                <div className="text-cyan-400 font-semibold">- Sarah M., College Basketball Player</div>
+                <div className="text-cyan-400 font-semibold text-sm md:text-base">- Sarah M., College Basketball Player</div>
               </div>
             </div>
           </div>
