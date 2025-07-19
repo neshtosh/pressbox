@@ -14,24 +14,24 @@ const Hero: React.FC = () => {
 
   const sportsVideos = [
     {
-      url: "https://videos.pexels.com/video-files/7005865/7005865-uhd_2560_1440_24fps.mp4",
+      url: "/assets/soccer.mp4", // Using boxing video for football
       sport: "Football",
       description: "NFL Action"
     },
     {
-      url: "https://cdn.pixabay.com/video/2020/11/07/55814-504238784_large.mp4",
-      sport: "Basketball",
+      url: "/assets/basketball.mp4",
+      sport: "Basketball", 
       description: "NBA Highlights"
     },
     {
-      url: "https://videos.pexels.com/video-files/7005865/7005865-uhd_2560_1440_24fps.mp4",
+      url: "/assets/formula.mp4",
       sport: "Soccer",
       description: "Premier League"
     },
     {
-      url: "https://videos.pexels.com/video-files/4761763/4761763-uhd_2732_1440_25fps.mp4",
+      url: "/assets/boxing.mp4", // Using boxing video for baseball
       sport: "Baseball",
-      description: "MLB "
+      description: "MLB Highlights"
     }
   ];
 
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
       key="boxing-gloves" 
       src={boxingGloves}
       alt="Boxing Gloves"
-      className="w-16 h-16 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
+      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
       style={{ 
         filter: 'brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(180deg)',
         animation: `rotateReveal 3s linear infinite`
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
       key="football" 
       src={football}
       alt="Football"
-      className="w-16 h-16 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
+      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
       style={{ 
         filter: 'brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(180deg)',
         animation: `rotateReveal 3s linear infinite 0.5s`
@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
       key="basketball" 
       src={basketball}
       alt="Basketball"
-      className="w-16 h-16 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
+      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
       style={{ 
         filter: 'brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(180deg)',
         animation: `rotateReveal 3s linear infinite 1s`
@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
       key="soccer" 
       src={soccer}
       alt="Soccer Ball"
-      className="w-16 h-16 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
+      className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-all duration-500 ease-in-out transform hover:scale-110 opacity-70"
       style={{ 
         filter: 'brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(180deg)',
         animation: `rotateReveal 3s linear infinite 1.5s`
@@ -88,6 +88,17 @@ const Hero: React.FC = () => {
     }, 6000); // Slower video rotation
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Preload videos for better performance
+  useEffect(() => {
+    sportsVideos.forEach((video) => {
+      const videoElement = document.createElement('video');
+      videoElement.src = video.url;
+      videoElement.preload = 'auto';
+      videoElement.muted = true;
+      videoElement.load();
+    });
   }, []);
 
   useEffect(() => {
@@ -122,7 +133,7 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/60"></div>
             
             {/* Sport Label */}
-            <div className="absolute top-8 left-8 z-10">
+            <div className="absolute top-16 left-8 z-10">
               <div className="bg-gray-800/40 backdrop-blur-sm border border-gray-600/30 rounded-lg px-4 py-2">
                 <span className="text-gray-300 font-medium text-sm">{video.sport}</span>
                 <p className="text-gray-400 text-xs opacity-80">{video.description}</p>
@@ -147,17 +158,17 @@ const Hero: React.FC = () => {
 
       {/* Main Content */}
       <div className="relative z-10 w-full h-full flex flex-col">
-        {/* Large Bold Title - Full width, larger size */}
+        {/* Large Bold Title - Improved mobile display */}
         <div className="flex items-center justify-center h-48 md:h-56 pt-32 px-4">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] font-orbitron font-black text-white tracking-tight leading-none animate-fade-in flex items-center w-full justify-center">
-            <span>PRESS</span>
-            <span className="text-gray-600 font-black">B</span>
-            <span className="text-gray-300 relative">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] font-orbitron font-black text-white tracking-tight leading-none animate-fade-in flex items-center w-full justify-center flex-wrap">
+            <span className="whitespace-nowrap">PRESS</span>
+            <span className="text-gray-600 font-black whitespace-nowrap">B</span>
+            <span className="text-gray-300 relative whitespace-nowrap">
               <div className="transition-all duration-500 ease-in-out transform hover:scale-110">
                 {sportsBalls[currentBallIndex]}
               </div>
             </span>
-            <span className="text-gray-600 font-black">X</span>
+            <span className="text-gray-600 font-black whitespace-nowrap">X</span>
           </h1>
         </div>
 
@@ -170,13 +181,13 @@ const Hero: React.FC = () => {
               <img 
                 src={signature} 
                 alt="Signature" 
-                className="h-14 md:h-16 lg:h-18 opacity-80 relative z-10"
+                className="h-12 sm:h-14 md:h-16 lg:h-18 opacity-80 relative z-10"
                 style={{ filter: 'brightness(0) invert(1)' }}
               />
               <img 
                 src={jersey} 
                 alt="Jersey" 
-                className="h-16 md:h-18 lg:h-20 opacity-70 -ml-10 md:-ml-10 lg:-ml-14 relative z-5"
+                className="h-14 sm:h-16 md:h-18 lg:h-20 opacity-70 -ml-8 sm:-ml-10 md:-ml-10 lg:-ml-14 relative z-5"
               />
             </div>
             

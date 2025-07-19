@@ -148,6 +148,72 @@ const BlogPost: React.FC<BlogPostProps> = ({ postId }) => {
         shares: 289,
         likes: 523
       }
+    ],
+    baseball: [
+      {
+        id: '7',
+        title: "The Analytics Revolution in Baseball: Moneyball's Legacy",
+        subtitle: "How sabermetrics continues to shape the modern game",
+        excerpt: "Baseball's embrace of analytics has fundamentally changed how teams evaluate players and make strategic decisions...",
+        author: {
+          name: "Admin",
+          avatar: "",
+          stats: { articles: 98, followers: "56.7K" }
+        },
+        publishDate: "December 9, 2024 at 4:15 PM",
+        readTime: "8 min read",
+        category: "Baseball",
+        sport: "⚾",
+        tags: ["Analytics", "Sabermetrics", "MLB", "Strategy"],
+        image: "https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        comments: 45,
+        shares: 198,
+        likes: 334
+      }
+    ],
+    hockey: [
+      {
+        id: '8',
+        title: "The Speed Revolution: How Modern Hockey is Faster Than Ever",
+        subtitle: "Exploring the evolution of hockey's pace and skill requirements",
+        excerpt: "Today's NHL is faster, more skilled, and more demanding than ever before, requiring players to adapt to new standards...",
+        author: {
+          name: "Admin",
+          avatar: "",
+          stats: { articles: 134, followers: "43.2K" }
+        },
+        publishDate: "December 8, 2024 at 1:30 PM",
+        readTime: "6 min read",
+        category: "Hockey",
+        sport: "🏒",
+        tags: ["Speed", "NHL", "Evolution", "Skills"],
+        image: "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        comments: 32,
+        shares: 145,
+        likes: 267
+      }
+    ],
+    esports: [
+      {
+        id: '9',
+        title: "The Rise of Esports: From Niche to Mainstream",
+        subtitle: "How competitive gaming has become a global phenomenon",
+        excerpt: "Esports has evolved from basement tournaments to stadium-filling events with millions of viewers worldwide...",
+        author: {
+          name: "Admin",
+          avatar: "",
+          stats: { articles: 178, followers: "92.1K" }
+        },
+        publishDate: "December 7, 2024 at 3:45 PM",
+        readTime: "9 min read",
+        category: "eSports",
+        sport: "🎮",
+        tags: ["eSports", "Gaming", "Competition", "Technology"],
+        image: "https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        comments: 78,
+        shares: 312,
+        likes: 589
+      }
     ]
   };
 
